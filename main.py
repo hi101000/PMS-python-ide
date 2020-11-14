@@ -11,7 +11,6 @@ import sys
 from tkinter.messagebox import showwarning
 import py_compile
 from typing import List, Any, Union
-import pickle, sklearn
 import term
 from idlelib.tooltip import *
 import re
@@ -370,8 +369,6 @@ txt.tag_configure("builtin", foreground="#19c5ff")
 txt.tag_configure("string", foreground="#008000")
 txt.tag_configure("comment", foreground="#ffa500")
 txt.tag_configure("number", foreground="#7fffd4")
-aimodel=open("ai.pkl", "rb")
-model=pickle.load(aimodel)
 def highlight():
     predictions=model.predict(txt.get().split())
     for prediction in predictions:
