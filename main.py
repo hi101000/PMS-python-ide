@@ -38,7 +38,7 @@ class CustomScrolledText(scrolledtext.ScrolledText, Text):
     version of the tcl code at http://wiki.tcl.tk/3246
     '''
     def __init__(self, *args, **kwargs):
-        Text.__init__(self, *args, **kwargs)
+        Text.__init__(*args, **kwargs)
 
     def highlight_pattern(self, pattern, tag, start="1.0", end="end",
                           regexp=False):
@@ -369,13 +369,6 @@ txt.tag_configure("builtin", foreground="#19c5ff")
 txt.tag_configure("string", foreground="#008000")
 txt.tag_configure("comment", foreground="#ffa500")
 txt.tag_configure("number", foreground="#7fffd4")
-def highlight():
-    predictions=model.predict(txt.get().split())
-    for prediction in predictions:
-        if prediction=='builtin':
-            txt.highlight_pattern(prediction, "builtin")
-        elif prediction=='keyword': txt.highlight_pattern(prediction, "keyword")
-        elif prediction=='string': pass
 notebook.add(txt, text='New File')
 #create the run and file menus
 menubar=Menu(root)
@@ -410,6 +403,5 @@ keyboard.add_hotkey('ctrl + o', openfile)
 keyboard.add_hotkey('ctrl + s', save, args=txt.get("1.0", 'end-1c'))
 keyboard.add_hotkey('ctrl + w', close_tab_in_editor)
 keyboard.add_hotkey('ctrl + t', nexttab)
-keyboard.add_hotkey('ctrl + h', highlight)
 #run the program
 root.mainloop()
